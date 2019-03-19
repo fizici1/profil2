@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title 'Eleves' %}
+
+{% block body %}
+<div class="container">
+  <h1> Gestion des élèves </h1>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">login</th>
+        <th scope="col">Classe</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for eleve in eleves %}
+        <tr>
+          <td> <a href="{{ path('eleves.show', {id: eleve.id, login: eleve.login }) }}"> {{ eleve.login }} </td>
+          <td> {{ eleve.classe }} </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
