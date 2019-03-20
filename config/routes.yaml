@@ -17,6 +17,14 @@ eleves.show:
   path: /eleves/{login}-{id}
   controller: App\Controller\EleveController::show
 
+eleves.new:
+  path: /eleves/create
+  controller: App\Controller\EleveController::new
+
+eleves.delete:
+  path: /eleves/delete/{id}
+  controller: App\Controller\EleveController::delete
+
 evaluations:
   path: /evaluations
   controller: App\Controller\EvaluationController::index

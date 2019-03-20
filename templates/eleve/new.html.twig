@@ -11,12 +11,7 @@
       <div class="col-md-4">{{ form_row(form.classe) }}</div>
     </div>
     {{ form_rest(form) }}
-    <button class="btn btn-primary">Sauvegarder</button>
+    <button class="btn btn-primary">Enregistrer</button>
   {{ form_end(form) }}
-  <form method="post" action="{{ path('eleves.delete', {id: eleve.id}) }}">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ eleve.id) }}">
-    <button class="btn btn-danger">Supprimer</button>
-  </form>
 </div>
 {% endblock %}
