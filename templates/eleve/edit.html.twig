@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title 'Eleves' %}
+
+{% block body %}
+<div class="container">
+  <h1> {{ eleve.login }} </h1>
+  {{ form_start(form) }}
+    <div class="row">
+      <div class="col-md-4">{{ form_row(form.login) }}</div>
+      <div class="col-md-4">{{ form_row(form.password) }}</div>
+      <div class="col-md-4">{{ form_row(form.classe) }}</div>
+    </div>
+    {{ form_rest(form) }}
+    <button class="btn btn-primary">Sauvegarder</button>
+  {{ form_end(form) }}
+</div>
+{% endblock %}

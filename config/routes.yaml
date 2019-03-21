@@ -17,6 +17,10 @@ eleves.show:
   path: /eleves/{login}-{id}
   controller: App\Controller\EleveController::show
 
+eleves.edit:
+  path: /eleves/edit/{id}
+  controller: App\Controller\EleveController::edit
+
 eleves.new:
   path: /eleves/create
   controller: App\Controller\EleveController::new

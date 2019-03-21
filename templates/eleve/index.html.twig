@@ -4,24 +4,43 @@
 {% block body %}
 <div class="container">
   <h1> Gestion des élèves </h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">login</th>
-        <th scope="col">Classe</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for eleve in eleves %}
-        <tr>
-          <td> <a href="{{ path('eleves.show', {id: eleve.id, login: eleve.login }) }}"> {{ eleve.login }} </td>
-          <td> {{ eleve.classe }} </td>
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  <div class="text-right">
-    <a href="{{ path('eleves.new') }}" class="btn btn-primary">Ajouter</a>
+  {{ form_start(form) }}
+    <div class="row align-items-end">
+      <div class="col-sm-4">{{ form_row(form.classe) }}</div>
+      <div class="col-sm-4">{{ form_row(form.filter) }}</div>
+    </div>
+  {{ form_end(form) }}
+  <div class="row">
+    <div class="col-sm-6">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">login</th>
+            <th scope="col">classe</th>
+            <th scope="col">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for eleve in eleves %}
+            <tr>
+              <td> <a href="{{ path('eleves.show', {id: eleve.id, login: eleve.login }) }}"> {{ eleve.login }} </td>
+              <td> {{ eleve.classe }} </td>
+              <td>
+                <a href="{{ path('eleves.edit', {id: eleve.id}) }}" class="btn btn-secondary btn-sm">Editer</a>
+                <form method="post" action="{{ path('eleves.delete', {id: eleve.id}) }}" style="display: inline-block" onsubmit="return confirm('Êtes vous vraiment sûr ?')">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ eleve.id) }}">
+                  <button class="btn btn-danger btn-sm">Supprimer</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="col-sm-6">
+      <a href="{{ path('eleves.new') }}" class="btn btn-primary">Ajouter</a>
+    </div>
   </div>
 </div>
 {% endblock %}
